@@ -28,7 +28,7 @@ namespace Rubic
         {
             services.AddControllers();
             services.AddDbContext<MoneyBotContext>(p =>
-                p.UseSqlite("Data Source=usersdata.db; Forgeign Keys=True"));
+                p.UseSqlite("Data Source=usersdata.db; Foreign Keys=True"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,5 +49,4 @@ namespace Rubic
             });
         }
     }
-}
 }
