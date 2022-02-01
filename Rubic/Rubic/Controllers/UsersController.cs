@@ -19,7 +19,11 @@ namespace Rubic.Controllers
 
         public IMapper _mapper;
         public MoneyBotContext _context;
+<<<<<<< HEAD
         public UserController(MoneyBotContext context, IMapper mapper)
+=======
+        public UserController(MoneyBotContext context)
+>>>>>>> 164a5fa87a697a2c2c8c03c6e8fcaeeffa1f364d
         {
             _context = context;
             _mapper = mapper;
@@ -65,6 +69,7 @@ namespace Rubic.Controllers
             }
             return Ok();
         }
+<<<<<<< HEAD
         [HttpGet("{userId}")]
         public async Task<ActionResult<UserInformationDto>> Get(int userId)
         {
@@ -79,3 +84,47 @@ namespace Rubic.Controllers
         }
     }
 }
+=======
+        [HttpPost("register")]
+        public async Task<ActionResult> Register(UserIdentity userIdentity)
+        {
+            User user = new User()
+            {
+                PhoneNumberPrefix = userIdentity.PhoneNumberPrefix,
+                PhoneNumber = userIdentity.PhoneNumber,
+                Password = userIdentity.Password,
+            };
+            _context.Users.Add(user);
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+        [HttpPost("SingIn")]
+        public async Task<ActionResult> SingIn(UserIdentity userIdentity)
+        {
+            User user = await _context.Users.FirstOrDefaultAsync(g => g.PhoneNumberPrefix == userIdentity.PhoneNumberPrefix 
+            && g.PhoneNumber == userIdentity.PhoneNumber
+            && g.Password == userIdentity.Password
+            );
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
+        [HttpGet("Back")]
+        public async Task<ActionResult> Back(UserIdentity userIdentity)
+        {
+            User user = await _context.Users.FirstOrDefaultAsync(g => g.PhoneNumberPrefix == userIdentity.PhoneNumberPrefix
+            && g.PhoneNumber == userIdentity.PhoneNumber
+            && g.Password == userIdentity.Password
+            );
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
+}
+>>>>>>> 164a5fa87a697a2c2c8c03c6e8fcaeeffa1f364d
