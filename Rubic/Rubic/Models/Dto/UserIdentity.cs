@@ -8,7 +8,7 @@ namespace Rubic.Models.Dto
     public class UserIdentity
     {
         public int PhoneNumberPrefix { get; set; }
-        public int PhoneNumber { get; set; }
-        public int Password { get; set; }
+        public long PhoneNumber { get; set; }
+        public string Password { get; set; }
     }
 }
